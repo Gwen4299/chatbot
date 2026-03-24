@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+        font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self' http://localhost:5000 http://localhost:11434;
+    ">
+    <title> AI Assistant </title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Widget Button -->
+    <button class="widget-button" id="widgetButton">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- Widget Container  -->
+    <div class="widget-container" id="widgetContainer">
+        <div class="widget-header">
+            <div class="widget-header-title">
+                <h3>AI Assistant <span class="badge">Local</span></h3>
+            </div>
+            <button class="widget-close" id="closeWidget">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Messages Container -->
+        <div class="messages-container" id="messagesContainer">
+            <div class="welcome-message">
+                <i class="fas fa-robot welcome-icon"></i>
+                <h4>Hello! I'm your Agregar's AI assistant</h4>
+                <p>How may I assist you today?</p>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <p>Just a second  
+                <span></span>
+                <span></span>
+                <span></span>
+            </p>
+                
+            </div>
+
+        <!-- Input Area -->
+        <div class="input-container">
+            
+            <div class="input-wrapper">
+
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Type your message here..." 
+                    rows="1"
+                    onkeydown="handleKeyDown(event)"
+                ></textarea>
+
+                <button onclick="sendMessage()" id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your JavaScript file -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
