@@ -10,20 +10,19 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-# 1. Load environment variables first
+
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# 2. Setup Gemini Client properly
-# Providing no api_key argument tells the SDK to look for 'GEMINI_API_KEY' in your .env
+
 client_gemini = genai.Client(
     http_options=types.HttpOptions(api_version='v1')
 )
 MODEL_ID = "gemini-2.0-flash"
 
-# Setup Paths and ChromaDB
+
 CHROMA_PATH = "./chroma_db"
 os.makedirs(CHROMA_PATH, exist_ok=True)
 os.makedirs('./pdfs/', exist_ok=True)
@@ -44,7 +43,7 @@ class PDFKnowledgeBase:
                         text += content + " "
             return [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
         except Exception as e:
-            print(f"❌ Extraction Error: {e}")
+            print(f" Extraction Error: {e}")
             return []
 
     def add_pdf(self, pdf_path):
@@ -52,7 +51,7 @@ class PDFKnowledgeBase:
         if chunks:
             ids = [str(uuid.uuid4()) for _ in chunks]
             collection.add(documents=chunks, ids=ids)
-            print(f"✅ Added {len(chunks)} chunks to ChromaDB.")
+            print(f" Added {len(chunks)} chunks to ChromaDB.")
 
     def search(self, query, n_results=3):
         results = collection.query(query_texts=[query], n_results=n_results)
@@ -75,7 +74,7 @@ def chat():
     
     def generate():
         try:
-            # Retrieve context from local vector store
+            
             context_results = kb.search(message)
             context_text = "\n".join(context_results)
             
@@ -95,7 +94,7 @@ def chat():
             Question: {message}
             """
             
-            # Use the consistent 'client_gemini' variable
+     
             response = client_gemini.models.generate_content_stream(
                 model=MODEL_ID,
                 contents=prompt
