@@ -20,8 +20,6 @@ CORS(app)
 # This looks for GEMINI_API_KEY in your .env file
 api_key = os.environ.get("GEMINI_API_KEY")
 
-if not api_key:
-    print("⚠️ WARNING: GEMINI_API_KEY not found. Please check your .env file.")
 
 client_gemini = genai.Client(
     api_key=api_key,
