@@ -1,0 +1,7 @@
+flask
+flask-cors
+python-dotenv
+PyPDF2
+chromadb
+sentence-transformers
+google-genai

@@ -10,18 +10,24 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-
+# 1. Load the .env file
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
+# 2. Retrieve the API key and initialize the client
+# This looks for GEMINI_API_KEY in your .env file
+api_key = os.environ.get("GEMINI_API_KEY")
+
+if not api_key:
+    print("⚠️ WARNING: GEMINI_API_KEY not found. Please check your .env file.")
 
 client_gemini = genai.Client(
+    api_key=api_key,
     http_options=types.HttpOptions(api_version='v1')
 )
-MODEL_ID = "gemini-2.0-flash"
-
+MODEL_ID = "gemini-2.5-flash"
 
 CHROMA_PATH = "./chroma_db"
 os.makedirs(CHROMA_PATH, exist_ok=True)
@@ -74,7 +80,6 @@ def chat():
     
     def generate():
         try:
-            
             context_results = kb.search(message)
             context_text = "\n".join(context_results)
             
@@ -94,7 +99,6 @@ def chat():
             Question: {message}
             """
             
-     
             response = client_gemini.models.generate_content_stream(
                 model=MODEL_ID,
                 contents=prompt
