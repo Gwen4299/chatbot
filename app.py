@@ -16,10 +16,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# 2. Retrieve the API key and initialize the client
-# This looks for GEMINI_API_KEY in your .env file
 api_key = os.environ.get("GEMINI_API_KEY")
-
 
 client_gemini = genai.Client(
     api_key=api_key,
