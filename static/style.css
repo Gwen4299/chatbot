@@ -20,7 +20,7 @@ body {
     color: white;
     border: none;
     border-radius: 50px;
-    padding: 15px 30px;
+    padding: 15px 20px;
     font-size: 1.1rem;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -41,41 +41,41 @@ body {
     font-size: 1.3rem;
 }
 
-/* Widget Container */
+/* Update these blocks in your style.css */
 .widget-container {
     position: fixed;
-    bottom: 100px;
+    bottom: 95px;
     right: 30px;
-    width: 0;
-    height: 0;
+    width: 400px;
+    height: 500px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1001;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.8);
+    transform-origin: bottom right;
     display: flex;
     flex-direction: column;
 }
 
 .widget-container.active {
-    width: 400px;
-    height: 500px; 
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
 }
 
-/* For smaller screens */
-@media (max-width: 768px) {
-    .widget-container.active {
-        width: 90%;
-        height: 80vh;
-        bottom: 80px;
-        right: 5%;
-    }
+.message-actions {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #edf2f7;
 }
+
 
 /* Widget Header */
 .widget-header {
@@ -105,15 +105,6 @@ body {
     margin: 0;
 }
 
-.widget-header .badge {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    padding: 2px 6px;
-    border-radius: 12px;
-    font-size: 0.65rem;
-    margin-left: 5px;
-}
-
 .widget-close {
     background: none;
     border: none;
@@ -132,6 +123,8 @@ body {
 .widget-close:hover {
     background: rgba(255,255,255,0.2);
 }
+
+
 
 /* Messages Container */
 .messages-container {
@@ -374,6 +367,7 @@ body {
     background: #a0aec0;
 }
 
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
@@ -383,4 +377,14 @@ body {
 @keyframes typing {
     0%, 60%, 100% { transform: translateY(0); }
     30% { transform: translateY(-5px); }
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .widget-container.active {
+        width: 90%;
+        height: 80vh;
+        bottom: 80px;
+        right: 5%;
+    }
 }
