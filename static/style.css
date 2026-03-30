@@ -41,7 +41,6 @@ body {
     font-size: 1.3rem;
 }
 
-/* Update these blocks in your style.css */
 .widget-container {
     position: fixed;
     bottom: 95px;
@@ -123,7 +122,6 @@ body {
 .widget-close:hover {
     background: rgba(255,255,255,0.2);
 }
-
 
 
 /* Messages Container */
