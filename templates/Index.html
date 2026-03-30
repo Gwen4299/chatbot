@@ -12,10 +12,10 @@
         connect-src 'self' http://localhost:5000 http://localhost:11434;
     ">
     <title> AI Assistant </title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+    
 <body>
     <!-- Widget Button -->
     <button class="widget-button" id="widgetButton">
@@ -42,13 +42,13 @@
             </div>
         </div>
 
+        <!-- Typing dots/bubbles -->
         <div class="typing-indicator" id="typingIndicator">
             <p>Just a second  
                 <span></span>
                 <span></span>
                 <span></span>
-            </p>
-                
+            </p>    
             </div>
 
         <!-- Input Area -->
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <!-- Your JavaScript file -->
+  
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
